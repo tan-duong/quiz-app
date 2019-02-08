@@ -21,6 +21,7 @@ Feature will added:
 - game settings e.g. level, maximum of questions
 - animation
 
-        
 
-
+<img src="https://i.ibb.co/sRgBLzj/photo-2019-02-08-16-48-58.jpg" alt="photo-2019-02-08-16-48-58" border="0">
+<img src="https://i.ibb.co/mJMdTh3/photo-2019-02-08-16-48-56.jpg" alt="photo-2019-02-08-16-48-56" border="0">
+<img src="https://i.ibb.co/Ykxg8Nb/photo-2019-02-08-16-49-01.jpg" alt="photo-2019-02-08-16-49-01" border="0">
