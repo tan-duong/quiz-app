@@ -1,4 +1,6 @@
 export const GET_QUESTION = 'GET_QUESTION'
 export const TOGGLE_IS_START = 'UPDATE_IS_START'
 export const TOGGLE_IS_DONE = 'UPDATE_IS_DONE'
-
+export const NEXT_QUIZ = 'NEXT_QUIZ'
+export const ANSWER_QUIZ = 'ANSWER_QUIZ'
+export const BACK_QUIZ = 'BACK_QUIZ'
