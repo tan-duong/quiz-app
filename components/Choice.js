@@ -13,12 +13,14 @@ export default class Choice extends Component {
     text: PropTypes.string.isRequired,
     choose: PropTypes.func.isRequired,
     isSelected: PropTypes.bool,
+    //key: PropTypes.number.isRequired
   }
 
   render() {
-    const {text} = this.props
+    const {text, isSelected} = this.props
+    
     return (
-      <TouchableOpacity style={isSelected ? [styles.container, styles.isSelected] : styles.container}
+      <TouchableOpacity style={isSelected ? [styles.container, styles.selected] : styles.container}
         onPress={this._choose}
       >
         <Text style={styles.text}>{text}</Text>

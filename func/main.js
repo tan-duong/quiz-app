@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { XmlEntities } from "html-entities";
 const API_URL = `https://opentdb.com/api.php?amount=10`;
 
 export const getQuizFromTrivia = async () => {
@@ -9,13 +9,16 @@ export const getQuizFromTrivia = async () => {
       url: API_URL
     });
 
-    return res.data.results.map(item, index => {
+    return res.data.results.map((item, index) => {
+      const entities = new XmlEntities();
+      const answer = item.incorrect_answers.map(i => entities.decode(i));
+      const correct_answer = entities.decode(item.correct_answer);
       return {
         id: index,
-        question: item.question,
+        question: entities.decode(item.question),
         type: item.type,
-        answers: sortAnswer([...item.incorrect_answers, item.correct_answer], item.type),
-        correct_answer: item.correct_answer
+        answers: sortAnswer([...answer, correct_answer], item.type),
+        correct_answer: correct_answer
       };
     });
   } catch (error) {
@@ -23,7 +26,7 @@ export const getQuizFromTrivia = async () => {
   }
 };
 
-const sortAnswer = (arr, type) => {
+export const sortAnswer = (arr, type) => {
   //random sort answer if it's multiple question
   if (type === "multiple") {
     return shuffle(arr);
@@ -35,7 +38,7 @@ const sortAnswer = (arr, type) => {
   }
 };
 
-const shuffle = array => {
+export const shuffle = array => {
   var currentIndex = array.length,
     temporaryValue,
     randomIndex;
@@ -53,4 +56,16 @@ const shuffle = array => {
   }
 
   return array;
+};
+
+export const secondsToHms = d => {
+  d = Number(d);
+  var h = Math.floor(d / 3600);
+  var m = Math.floor((d % 3600) / 60);
+  var s = Math.floor((d % 3600) % 60);
+
+  var hDisplay = h > 0 ? h + ":" : "";
+  var mDisplay = m > 0 ? m + ":" : "";
+  var sDisplay = s;
+  return hDisplay + mDisplay + sDisplay;
 };

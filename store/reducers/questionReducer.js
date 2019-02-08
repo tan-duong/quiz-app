@@ -4,29 +4,35 @@ import {
   TOGGLE_IS_DONE,
   NEXT_QUIZ,
   ANSWER_QUIZ,
-  BACK_QUIZ
+  BACK_QUIZ,
+  CALCULATE_RESULT,
+  INTERVAL
 } from "../actionType";
 
 const initState = {
-  isStarted: false,
-  isDone: false,
   questions: [],
   userAnswers: [],
-  currentQuestionNo: 0
+  currentQuestionNo: -1,
+  point: -1,
+  interval: 0,
 };
 
 const questionReducer = (state = initState, action) => {
   const { isStarted, isDone } = state;
   switch (action.type) {
-    case GET_QUESTION:
+    case GET_QUESTION: //Initialize game
       return {
         ...state,
+        currentQuestionNo: -1,
+        point: -1,
+        interval: 0,
         questions: action.payload.questions,
         userAnswers: action.payload.questions.map(item => {
           return {
-            quizId: item.quizId,
-            choose: ''
-          }
+            quizId: item.id,
+            choose: "",
+            isRight: false
+          };
         })
       };
     case TOGGLE_IS_START:
@@ -44,18 +50,31 @@ const questionReducer = (state = initState, action) => {
         ...state,
         currentQuestionNo: state.currentQuestionNo + 1
       };
-      case BACK_QUIZ:
+    case BACK_QUIZ:
       return {
         ...state,
         currentQuestionNo: state.currentQuestionNo - 1
       };
     case ANSWER_QUIZ:
+      const { answer } = action.payload;
+      
       return {
         ...state,
-        userAnswers: userAnswers.map(item => {
-          return item.quizId === payload.answer.quizId ? payload.answer : item
-          
+        userAnswers: state.userAnswers.map(item => {
+          return item.quizId === answer.quizId ? answer : item;
         })
+      };
+    case CALCULATE_RESULT:
+      const { point } = action.payload;
+      return {
+        ...state,
+        point: point
+      };
+    case INTERVAL:
+     
+      return {
+        ...state,
+        interval: state.interval + 1
       };
     default:
       return state;
