@@ -35,7 +35,7 @@ export default class Result extends Component {
               />{" "}
               Correct:
             </Text>
-            <Text style={styles.text}>{`${point}/${MAX_QUIZ_NO} quiz `}</Text>
+            <Text style={styles.text}>{`${point}/${MAX_QUIZ_NO} `}</Text>
             <Text style={styles.text}>{`in ${interval}s`}</Text>
           </View>
         </View>
