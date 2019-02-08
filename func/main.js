@@ -9,8 +9,9 @@ export const getQuizFromTrivia = async () => {
       url: API_URL
     });
 
-    return res.data.results.map(item => {
+    return res.data.results.map(item, index => {
       return {
+        id: index,
         question: item.question,
         type: item.type,
         answers: sortAnswer([...item.incorrect_answers, item.correct_answer], item.type),

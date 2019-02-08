@@ -21,7 +21,13 @@ const questionReducer = (state = initState, action) => {
     case GET_QUESTION:
       return {
         ...state,
-        questions: action.payload.questions
+        questions: action.payload.questions,
+        userAnswers: action.payload.questions.map(item => {
+          return {
+            quizId: item.quizId,
+            choose: ''
+          }
+        })
       };
     case TOGGLE_IS_START:
       return {
@@ -46,7 +52,10 @@ const questionReducer = (state = initState, action) => {
     case ANSWER_QUIZ:
       return {
         ...state,
-        userAnswers: {}
+        userAnswers: userAnswers.map(item => {
+          return item.quizId === payload.answer.quizId ? payload.answer : item
+          
+        })
       };
     default:
       return state;

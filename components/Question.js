@@ -9,13 +9,14 @@ import color from '../constants/color'
 
 export default class Question extends Component {
   static propTypes = {
-    prop: PropTypes
+    question: PropTypes.string.isRequired
   }
 
   render() {
+    const {question} = this.props
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>What is the largest animal in the planet?</Text>
+        <Text style={styles.text}>{question}</Text>
       </View>
     )
   }

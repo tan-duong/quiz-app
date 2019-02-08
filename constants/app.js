@@ -1,0 +1,1 @@
+export const MAX_QUIZ_NO = 10

@@ -10,21 +10,25 @@ import color from '../constants/color'
 
 export default class Choice extends Component {
   static propTypes = {
-    prop: PropTypes
+    text: PropTypes.string.isRequired,
+    choose: PropTypes.func.isRequired,
+    isSelected: PropTypes.bool,
   }
 
   render() {
+    const {text} = this.props
     return (
-      <TouchableOpacity style={styles.container}
+      <TouchableOpacity style={isSelected ? [styles.container, styles.isSelected] : styles.container}
         onPress={this._choose}
       >
-        <Text style={styles.text}>A. Blue Whale</Text>
+        <Text style={styles.text}>{text}</Text>
       </TouchableOpacity>
     )
   }
 
   _choose = () => {
-
+    const {choose} = this.props
+    choose()
   }
 }
 
@@ -38,6 +42,9 @@ const styles = StyleSheet.create({
       marginBottom: 5,
       padding: 10,
       borderColor: color.grey
+    },
+    selected:{
+      backgroundColor: color.orange,
     },
     text: {
       fontSize: 20,
