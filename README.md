@@ -13,7 +13,7 @@ How to run the app on mobile device.
 - scan QR code to open app in expo client
 
 Or,
-- download and install the apk here
+- download and install the apk which attached in email
 
 Feature will added:
 - record history
