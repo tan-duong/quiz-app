@@ -11,14 +11,17 @@ import Question from "../components/Question";
 import Choice from "../components/Choice";
 import color from "../constants/color";
 import Result from "../components/Result";
+import {connect} from 'react-redux'
+import {toggleIsStarted, toggleIsDone, getQuiz} from '../store/action'
 
-export default class MainScreen extends Component {
-  state = {
-    isStarted: false,
-    isDone: false
-  };
+class MainScreen extends Component {
+  componentDidMount(){
+    this.props.getQuiz()
+    console.log(this.props.questions)
+  }
+
   render() {
-    const { isStarted, isDone } = this.state;
+    const { isStarted, isDone } = this.props;
     return (
       <View style={styles.mainContainer}>
         <Header />
@@ -36,6 +39,7 @@ export default class MainScreen extends Component {
             style={styles.scroll}
             contentContainerStyle={styles.container}
           >
+          
             <Question />
             <Choice />
             <Choice />
@@ -49,10 +53,8 @@ export default class MainScreen extends Component {
     );
   }
   _start = () => {
-    this.setState({
-      isStarted: true,
-      isDone: true
-    });
+    const {toggleIsStarted} = this.props
+    toggleIsStarted()
   };
 }
 
@@ -87,3 +89,20 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
+
+const mapState = (state) => {
+  return {
+    isStarted: state.question.isStarted,
+    isDone: state.question.isDone,
+    questions: state.question.questions
+  }
+  
+}
+
+const actionCreator = {
+  toggleIsStarted,
+  toggleIsDone,
+  getQuiz
+}
+
+export default connect(mapState, actionCreator)(MainScreen)

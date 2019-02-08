@@ -1,0 +1,4 @@
+export const GET_QUESTION = 'GET_QUESTION'
+export const TOGGLE_IS_START = 'UPDATE_IS_START'
+export const TOGGLE_IS_DONE = 'UPDATE_IS_DONE'
+
