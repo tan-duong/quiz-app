@@ -15,7 +15,10 @@ How to run the app on mobile device.
 Or,
 - download and install the apk which attached in email
 
-Feature will added:
+Unit testing is included:
+- npm run test
+
+Feature may be added later:
 - record history
 - share result via social network e.g facebook
 - game settings e.g. level, maximum of questions
