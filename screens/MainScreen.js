@@ -164,7 +164,8 @@ class MainScreen extends Component {
 
 const styles = StyleSheet.create({
   scroll: {
-    backgroundColor: color.grey
+    backgroundColor: color.grey,
+    flex: 1,
   },
   container: {
     flex: 1,
